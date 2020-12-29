@@ -1,0 +1,103 @@
+<% if teacher_signed_in? %>
+  <h1>Trackings</h1>
+  <table class="table table-striped table-hover table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th>Name</th>
+        <th>Username</th>
+        <th>Date</th>
+        <th>Clock in out</th>
+        <th>Clock time</th>
+        <th>Teacher ID</th>
+        <th colspan="2"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @trackings.each do |tracking| %>
+        <% if tracking.teacher == current_teacher %>
+          <tr>
+            <td><%= link_to  tracking.first_name + '' + tracking.last_name, tracking, class: "link-info" %></td>
+            <td><%= tracking.user_name %></td>
+            <td><%= tracking.date %></td>
+            <td><%= tracking.clock_in_out %></td>
+            <td><%= tracking.clock_time.strftime("%I:%M%p") %></td>
+            <td><%= tracking.teacher_id %></td>
+            <td><%= link_to 'Edit', edit_tracking_path(tracking), class: "btn btn-outline-primary" %></td>
+            <td><%= link_to 'Delete', tracking, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+
+  <%= link_to 'New Tracking', new_tracking_path, class:"btn btn-secondary" %>
+<% else %>
+  <h3>Clock Management Application</h3>
+  <br/>
+  <ul class="list-unstyled">
+    <li>I used devise https://github.com/heartcombo/devise for implementing the teacher authentication.
+The teacher can:
+      <ul>
+        <li>create a new profile/ sign up</li>
+        <li>modify/update the profile</li>
+        <li>delete the profile</li>
+        <li>log in/sign out</li>
+        <li>the log in and sign up are only possible for the teachers that are not already signed in </li>
+        <li>the sign out and edit profile is only possible for the teachers that are already signed in </li>
+      </ul>
+  </li>
+  <br/>
+
+  <li>Once the teacher logged in to the Clock Management Application
+    <ul>
+      <li>they can create new trackings (clock in or clock out) </li>
+      <li>they can modify trackings (clock in or clock out) </li>
+      <li>they can show the trackings (view the information) </li>
+      <li>they only have access to their own trackings </li>
+      <li>they cannot modify other teachers trackings </li>
+      <li>if they attempt to modify/delete a record while they are not logged in they will be redirected to log in page </li>
+      <li>they can delete trackings (clock in or clock out entries) </li>
+      <li>they can view the list of their trackings </li>
+    </ul>
+  </li>
+  <br/>
+
+  <li>The database schema is very simple has two table teachers and trackings
+each teacher has many trackings and each tracking belongs to a teacher
+the foreign key on trackings table is teacher_id
+the primary key of teachers table is id and is the id </li>
+  <br/>
+
+  <li>If I work another day on this application I'd:
+    <ul>
+      <li>add more validations on the data inserted by the user </li>
+      <li>add date picker on the view for selecting time and date </li>
+      <li>modify the data format for storing time in db </li>
+      <li>modify the time/date to be shown in clients timezone instead of utc </li>
+      <li>they cannot modify other teachers trackings </li>
+      <li>modify the db schema for each clock in I'd consider a clock out so each tracking would have both clock in/clock out events so I could only let the teacher to insert valid data (ex. I'd check if the associated clock in time is less than clock out or if there is already a clock in for the clock out event ..) </li>
+    </ul>
+  </li>
+  <br/>
+
+  <li>If I work another day on this application I'd:
+    <ul>
+      <li>still work on improving the design </li>
+      <li>add more checks and validations </li>
+      <li>add more features to the application such as:
+        <ul>
+          <li>calculating the duration of each tracking </li>
+          <li>add a description section to db and to the forms so the user can assign a description to the tracking event </li>
+          <li>add a feature so the user can insert a new event only by clicking a button, lets press a button which will take the now time and automatically creates a new event for the user  </li>
+          <li>improve the db schema and model and remove the unesessary fields from the view </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+  <br/>
+
+<% end %>

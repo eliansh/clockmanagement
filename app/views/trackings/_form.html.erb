@@ -1,0 +1,53 @@
+<%= form_with(model: tracking) do |form| %>
+  <% if tracking.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tracking.errors.count, "error") %> prohibited this tracking from being saved:</h2>
+
+      <ul>
+        <% tracking.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field mb-3">
+    <% form.label :first_name, class:"form-label" %>
+    <%= form.text_field :first_name, class:"form-control", placeholder:"First Name", :required => true %>
+  </div>
+
+  <div class="field mb-3">
+    <% form.label :last_name, class:"form-label" %>
+    <%= form.text_field :last_name, class:"form-control", placeholder:"Last Name", :required => true %>
+  </div>
+
+  <div class="field mb-3">
+    <% form.label :user_name, class:"form-label" %>
+    <%= form.text_field :user_name, class:"form-control", placeholder:"Username", :required => true %>
+  </div>
+
+  <div class="field mb-3">
+    <% form.label :teacher_id, class:"form-label" %>
+    <%= form.number_field :teacher_id, id: :tracking_teacher_id, class:"form-control", value: current_teacher.id, type: :hidden %>
+  </div>
+
+  <div class="field mb-3 col-md-6">
+    <% form.label :date, as: :string, class:"form-label" %>
+    <%= form.date_select :date, class:"form-select", :required => true %>
+  </div>
+
+  <div class="field mb-3">
+    <% form.label :clock_in_out, class:"form-label" %>
+    <%= form.text_field :clock_in_out, class:"form-control", placeholder:"In/Out", :required => true %>
+  </div>
+
+  <div class="field mb-3 col-md-6">
+    <% form.label :clock_time, class:"form-label" %>
+    <%= form.time_select :clock_time, class: "form-select", :required => true %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class:'btn btn-secondary' %>
+  </div>
+
+<% end %>

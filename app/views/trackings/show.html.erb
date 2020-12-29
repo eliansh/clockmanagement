@@ -1,0 +1,30 @@
+<div class="card text-center">
+  <div class="card-header bg-dark text-white">
+    <%= @tracking.first_name %> <%= @tracking.last_name %>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title"></h5>
+    <p>
+      <strong>Username:</strong>
+      <%= @tracking.user_name %>
+    </p>
+    <p>
+      <strong>Clock In/Out:</strong>
+      <%= @tracking.clock_in_out %>
+    </p>
+
+    <p>
+      <strong>Date:</strong>
+      <%= @tracking.date %>
+    </p>
+
+    <p>
+      <strong>Time:</strong>
+      <%= @tracking.clock_time.strftime("%I:%M%p") %>
+    </p>
+
+    <%= link_to 'Edit', edit_tracking_path(@tracking), class:"btn btn-secondary" %>
+    <%= link_to 'Back', trackings_path, class:"btn btn-secondary" %>
+
+  </div>
+</div>
