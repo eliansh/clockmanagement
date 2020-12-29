@@ -1,9 +1,9 @@
 # README
 
-ruby 2.7.2p137 
-rails 6.1.0
-yarn 1.22.5
-npm 6.14.9
+- ruby 2.7.2p137 
+- rails 6.1.0
+- yarn 1.22.5
+- npm 6.14.9
 
 Clock Management Application:
 
@@ -41,7 +41,7 @@ if I work another day on this application I'd:
 - still work on improving the design
 - add more checks and validations
 - add more features to the application such as:
- -- calculating the duration of each tracking
- -- add a description section to db and to the forms so the user can assign a description to the tracking event
- -- add a feature so the user can insert a new event only by clicking a button, lets press a button which will take the now time and automatically creates a new event for the user
- -- improve the db schema and model and remove the unesessary fields from the view
+ - calculating the duration of each tracking
+ - add a description section to db and to the forms so the user can assign a description to the tracking event
+ - add a feature so the user can insert a new event only by clicking a button, lets press a button which will take the now time and automatically creates a new event for the user
+ - improve the db schema and model and remove the unesessary fields from the view
